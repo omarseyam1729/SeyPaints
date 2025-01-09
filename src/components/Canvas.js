@@ -1,14 +1,22 @@
 import React, { useRef, useEffect } from 'react';
 
-const Canvas = ({ color }) => {
+const Canvas = React.forwardRef(({ color },forwardedRef) => {
   const canvasRef = useRef(null);
+  const isDrawingRef = useRef(false);
+  useEffect(() => {
+    if (forwardedRef) {
+      forwardedRef.current = canvasRef.current;
+    }
+  }, [forwardedRef]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     canvas.width = 800;
     canvas.height = 600;
-    context.fillStyle = '#ffffff'; 
+
+    // Fill the canvas with a white background initially
+    context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
   }, []);
 
@@ -16,29 +24,34 @@ const Canvas = ({ color }) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    context.strokeStyle = color; // Brush or eraser color
-    context.lineWidth = 2;       
+    isDrawingRef.current = true;
+    context.strokeStyle = color;
+    context.lineWidth = 2;
     context.beginPath();
     context.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+  };
 
-    const draw = (event) => {
-      context.lineTo(event.offsetX, event.offsetY);
-      context.stroke();
-    };
+  const handleMouseMove = (e) => {
+    if (!isDrawingRef.current) return;
 
-    const stopDrawing = () => {
-      canvas.removeEventListener('mousemove', draw);
-      canvas.removeEventListener('mouseup', stopDrawing);
-    };
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
 
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
+    context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    context.stroke();
+  };
+
+  const handleMouseUp = () => {
+    isDrawingRef.current = false;
   };
 
   return (
     <canvas
       ref={canvasRef}
       onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp} // Stop drawing if the mouse leaves the canvas
       style={{
         border: '1px solid black',
         display: 'block',
@@ -46,6 +59,6 @@ const Canvas = ({ color }) => {
       }}
     ></canvas>
   );
-};
+});
 
 export default Canvas;

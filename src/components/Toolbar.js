@@ -1,4 +1,4 @@
-const Toolbar = ({ setColor, handleToggleEraser, eraserMode }) => {
+const Toolbar = ({ setColor, handleToggleEraser, eraserMode,handleSave }) => {
   return (
     <div style={{
       display: 'flex',
@@ -15,7 +15,7 @@ const Toolbar = ({ setColor, handleToggleEraser, eraserMode }) => {
         onChange={(e) => setColor(e.target.value)}
         disabled={eraserMode} // Disable color picker when eraser is active
       />
-      <button>Save</button>
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 };
