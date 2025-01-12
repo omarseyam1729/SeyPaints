@@ -88,6 +88,8 @@ const Toolbar = ({
             <option value="default">Default</option>
             <option value="calligraphy">Calligraphy</option>
             <option value="splatter">Splatter</option>
+            <option value="swirl">Swirl</option>
+            <option value="neon">Neon</option>
           </select>
         </div>
       )}
