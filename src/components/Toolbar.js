@@ -90,6 +90,13 @@ const Toolbar = ({
             <option value="splatter">Splatter</option>
             <option value="swirl">Swirl</option>
             <option value="neon">Neon</option>
+            <option value="scribble">Scribble</option>
+            <option value="fire">Fire</option>
+            <option value="feather">Feather</option>
+            <option value="drip">Drip</option>
+            <option value="glitch">Glitch</option>
+            <option value="foam">Foam</option>
+            <option value="watercolor">WaterColor</option>
           </select>
         </div>
       )}
