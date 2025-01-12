@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import '../styles/Canvas.css';
+import { brushHandlers } from './brushes'; // Import brush handlers
 
-const Canvas = React.forwardRef(({ color, brushSize,width,height }, forwardedRef) => {
+const Canvas = React.forwardRef(({ color, brushSize, width, height, brushType }, forwardedRef) => {
   const canvasRef = useRef(null);
   const isDrawingRef = useRef(false);
+  const lastPositionRef = useRef({ x: 0, y: 0 });
+  const lastTimeRef = useRef(Date.now());
 
   useEffect(() => {
     if (forwardedRef) {
@@ -18,19 +21,12 @@ const Canvas = React.forwardRef(({ color, brushSize,width,height }, forwardedRef
     canvas.height = height;
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
-  }, [width,height]);
+  }, [width, height]);
 
   const handleMouseDown = (e) => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-
+    const currentPosition = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
+    lastPositionRef.current = currentPosition;
     isDrawingRef.current = true;
-
-    context.strokeStyle = color;
-    context.lineWidth = brushSize; 
-    context.lineCap = 'round'; 
-    context.beginPath();
-    context.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
   };
 
   const handleMouseMove = (e) => {
@@ -38,9 +34,19 @@ const Canvas = React.forwardRef(({ color, brushSize,width,height }, forwardedRef
 
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
+    const currentPosition = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
 
-    context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
-    context.stroke();
+    const brushHandler = brushHandlers[brushType] || brushHandlers.default;
+    brushHandler(context, {
+      start: lastPositionRef.current,
+      end: currentPosition,
+      color,
+      size: brushSize,
+      lastTime: lastTimeRef.current,
+    });
+
+    lastPositionRef.current = currentPosition;
+    lastTimeRef.current = Date.now();
   };
 
   const handleMouseUp = () => {

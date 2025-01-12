@@ -9,16 +9,27 @@ const Toolbar = ({
   handleSave,
   setBrushSize,
   handleClearScreen,
-  setCanvasSize, 
+  setCanvasSize,
+  setBrushType, // New callback for brush type
+  brushType, // Current selected brush type
 }) => {
   const handleCanvasSizeChange = (e) => {
     const { name, value } = e.target;
     setCanvasSize((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleBrushTypeChange = (e) => {
+    setBrushType(e.target.value);
+  };
+
+  const toggleEraserMode = () => {
+    setBrushType('default'); // Reset brush type to default when eraser is toggled
+    handleToggleEraser();
+  };
+
   return (
     <div className="toolbar">
-      <button onClick={handleToggleEraser} title={eraserMode ? 'Brush' : 'Eraser'}>
+      <button onClick={toggleEraserMode} title={eraserMode ? 'Brush' : 'Eraser'}>
         <FontAwesomeIcon icon={eraserMode ? faPaintBrush : faEraser} />
       </button>
       {!eraserMode && (
@@ -65,6 +76,21 @@ const Toolbar = ({
           />
         </div>
       </div>
+      {!eraserMode && (
+        <div className="brush-type-container">
+          <label htmlFor="brush-type">Brush Type</label>
+          <select
+            id="brush-type"
+            value={brushType}
+            onChange={handleBrushTypeChange}
+            title="Select Brush Type"
+          >
+            <option value="default">Default</option>
+            <option value="calligraphy">Calligraphy</option>
+            <option value="splatter">Splatter</option>
+          </select>
+        </div>
+      )}
       <button onClick={handleSave} title="Save">
         <FontAwesomeIcon icon={faSave} />
       </button>

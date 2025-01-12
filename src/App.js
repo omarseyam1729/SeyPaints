@@ -8,7 +8,8 @@ const App = () => {
   const [color, setColor] = useState('#000000'); 
   const [eraserMode, setEraserMode] = useState(false);
   const [brushSize, setBrushSize] = useState(10); 
-  const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 }); // New state for canvas size
+  const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 }); // State for canvas size
+  const [brushType, setBrushType] = useState('default'); // State for brush type
 
   const handleToggleEraser = () => {
     setEraserMode((prevMode) => !prevMode);
@@ -42,6 +43,8 @@ const App = () => {
         setBrushSize={setBrushSize}
         handleClearScreen={handleClearScreen} 
         setCanvasSize={setCanvasSize} // Pass canvas size control to Toolbar
+        setBrushType={setBrushType} // Pass brush type control to Toolbar
+        brushType={brushType} // Current brush type
       />
       <Canvas 
         ref={canvasRef} 
@@ -49,6 +52,7 @@ const App = () => {
         brushSize={brushSize} 
         width={canvasSize.width} 
         height={canvasSize.height} 
+        brushType={brushType} // Pass brush type to Canvas
       /> 
     </div>
   );
