@@ -34,6 +34,10 @@ const Canvas = React.forwardRef(({ color, brushSize, width, height, brushType },
 
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
+
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+
     const currentPosition = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
 
     const brushHandler = brushHandlers[brushType] || brushHandlers.default;
