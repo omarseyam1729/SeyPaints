@@ -1,11 +1,7 @@
+import '../styles/Toolbar.css'
 const Toolbar = ({ setColor, handleToggleEraser, eraserMode,handleSave }) => {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      gap: '10px',
-      margin: '10px',
-    }}>
+    <div className="toolbar">
       <button onClick={handleToggleEraser}>
         {eraserMode ? 'Brush' : 'Eraser'}
       </button>

@@ -1,0 +1,47 @@
+.toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Add space between elements */
+    margin: 20px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light gray background for toolbar */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+  }
+  
+  button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #007bff; /* Blue background for buttons */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+  
+  button:active {
+    background-color: #003f8a; /* Even darker blue on click */
+    transform: scale(1); /* Reset zoom */
+  }
+  
+  input[type='color'] {
+    padding: 5px;
+    border: none;
+    background-color: #ffffff; /* White background for color picker */
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for color picker */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+  }
+  
+  input[type='color']:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-
+import '../styles/Canvas.css';
 const Canvas = React.forwardRef(({ color },forwardedRef) => {
   const canvasRef = useRef(null);
   const isDrawingRef = useRef(false);
@@ -51,12 +51,8 @@ const Canvas = React.forwardRef(({ color },forwardedRef) => {
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp} // Stop drawing if the mouse leaves the canvas
-      style={{
-        border: '1px solid black',
-        display: 'block',
-        margin: '20px auto',
-      }}
+      onMouseLeave={handleMouseUp}
+      className='canvas'
     ></canvas>
   );
 });

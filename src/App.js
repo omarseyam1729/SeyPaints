@@ -2,6 +2,7 @@ import React, { useState,useRef } from 'react';
 import Toolbar from './components/Toolbar';
 import Canvas from './components/Canvas';
 
+
 const App = () => {
   const canvasRef = useRef(null);
   const [color, setColor] = useState('#000000'); 
