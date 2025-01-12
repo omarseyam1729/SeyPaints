@@ -1,5 +1,4 @@
-# Paint Application
-
+# SeyPaints.
 A simple and interactive paint application built using React. The application offers a seamless interface for drawing and painting, with essential tools for creativity and customization.
 
 ## Key Features
