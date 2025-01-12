@@ -1,0 +1,183 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 100%; /* Base font size for rem units */
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Layout Utility Classes */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .col {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  /* Responsive Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+    }
+    p {
+      font-size: 1.125rem;
+    }
+  }
+  
+  /* Responsive Canvas Area */
+  .canvas-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Toolbar Styles */
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+    color: #333;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toolbar button {
+    color: #fff;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toolbar button:hover {
+    background-color: #0056b3;
+  }
+  
+  .toolbar button:active {
+    background-color: #003f8a;
+  }
+  
+  .toolbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Footer Styles */
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 0.875rem;
+    border-top: 2px solid #ccc;
+  }
+  
+  /* Responsive Design Breakpoints */
+  @media (max-width: 576px) {
+    .toolbar {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .toolbar-title {
+      font-size: 1.25rem;
+    }
+  
+    .footer {
+      font-size: 0.75rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 85%;
+    }
+  }
+  

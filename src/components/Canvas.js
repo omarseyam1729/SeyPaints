@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import '../styles/Canvas.css';
-const Canvas = React.forwardRef(({ color },forwardedRef) => {
+
+const Canvas = React.forwardRef(({ color, brushSize,width,height }, forwardedRef) => {
   const canvasRef = useRef(null);
   const isDrawingRef = useRef(false);
+
   useEffect(() => {
     if (forwardedRef) {
       forwardedRef.current = canvasRef.current;
@@ -12,21 +14,21 @@ const Canvas = React.forwardRef(({ color },forwardedRef) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    canvas.width = 800;
-    canvas.height = 600;
-
-    // Fill the canvas with a white background initially
+    canvas.width = width;
+    canvas.height = height;
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
-  }, []);
+  }, [width,height]);
 
   const handleMouseDown = (e) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
     isDrawingRef.current = true;
+
     context.strokeStyle = color;
-    context.lineWidth = 2;
+    context.lineWidth = brushSize; 
+    context.lineCap = 'round'; 
     context.beginPath();
     context.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
   };
@@ -52,7 +54,7 @@ const Canvas = React.forwardRef(({ color },forwardedRef) => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      className='canvas'
+      className="canvas"
     ></canvas>
   );
 });
