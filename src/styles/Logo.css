@@ -1,0 +1,47 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif; /* Sleek and modern font */
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .logo-icon {
+    font-size: 2.5rem;
+    color: #007BFF; /* Cool Blue */
+    animation: glow 2s infinite alternate;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    letter-spacing: 1px;
+  }
+  
+  .logo-text .sey {
+    color: #00BFFF; /* Deep Sky Blue */
+    text-shadow: 1px 1px 4px rgba(0, 191, 255, 0.6); /* Subtle glow */
+  }
+  
+  .logo-text .paints {
+    color: #1E90FF; /* Dodger Blue */
+    text-shadow: 1px 1px 4px rgba(30, 144, 255, 0.6); /* Subtle glow */
+  }
+  
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(0, 123, 255, 1);
+    }
+  }
+  

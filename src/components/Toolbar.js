@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush, faEraser, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Toolbar.css';
-
+import Logo from './Logo'
 const Toolbar = ({
   setColor,
   handleToggleEraser,
@@ -29,6 +29,7 @@ const Toolbar = ({
 
   return (
     <div className="toolbar">
+      <Logo/>
       <button onClick={toggleEraserMode} title={eraserMode ? 'Brush' : 'Eraser'}>
         <FontAwesomeIcon icon={eraserMode ? faPaintBrush : faEraser} />
       </button>
