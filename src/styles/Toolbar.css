@@ -1,148 +1,269 @@
+/* --- Toolbar Container --- */
 .toolbar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
-  gap: 40px;
-  padding: 20px;
+  /* Instead of gap: 40px; we use margin on children */
   margin: 20px auto;
-  background: linear-gradient(135deg, #f0f4f8, #dfe3e8);
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid #d6d9de;
+  padding: 20px;
   max-width: 90%;
+  border: 1px solid #d6d9de;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  /* Fallback background color */
+  background: #f0f4f8;
+  /* Old gradients could be used if you need IE9 or older Safari/Android */
+  background: -webkit-linear-gradient(135deg, #f0f4f8, #dfe3e8);
+  background: -moz-linear-gradient(135deg, #f0f4f8, #dfe3e8);
+  background: linear-gradient(135deg, #f0f4f8, #dfe3e8);
 }
 
+.toolbar > * {
+  margin: 0 20px;  /* replicate the 'gap: 40px;' effect (20px on each side) */
+}
+
+/* --- Buttons --- */
 button {
-  display: flex;
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   padding: 12px 18px;
-  background: linear-gradient(135deg, #4a90e2, #357abd);
   color: #fff;
-  border: none;
-  border-radius: 12px;
   font-size: 16px;
   font-weight: bold;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
+  /* Fallback background color */
+  background: #4a90e2;
+  /* Gradient backgrounds with fallbacks */
+  background: -webkit-linear-gradient(135deg, #4a90e2, #357abd);
+  background: -moz-linear-gradient(135deg, #4a90e2, #357abd);
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  /* Transitions with vendor prefixes */
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease, background 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease, background 0.3s ease;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 button:hover {
+  /* Slightly darker gradient */
+  background: -webkit-linear-gradient(135deg, #3b78b1, #2f5c89);
+  background: -moz-linear-gradient(135deg, #3b78b1, #2f5c89);
   background: linear-gradient(135deg, #3b78b1, #2f5c89);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
   transform: scale(1.1);
 }
 
 button:active {
+  background: -webkit-linear-gradient(135deg, #2f5c89, #244d6d);
+  background: -moz-linear-gradient(135deg, #2f5c89, #244d6d);
   background: linear-gradient(135deg, #2f5c89, #244d6d);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
   transform: scale(1);
 }
 
+/* --- Color Picker --- */
 input[type="color"] {
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="color"]:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   transform: scale(1.2);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
+/* --- Range Slider --- */
 input[type="range"] {
   width: 200px;
-  -webkit-appearance: none;
   height: 8px;
+  margin-top: 10px;
   border-radius: 10px;
+  background: #4a90e2; /* fallback */
+  background: -webkit-linear-gradient(left, #4a90e2, #a4d1f9);
+  background: -moz-linear-gradient(left, #4a90e2, #a4d1f9);
   background: linear-gradient(to right, #4a90e2, #a4d1f9);
   outline: none;
-  margin-top: 10px;
+  /* appearance resets for older browsers */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: box-shadow 0.3s ease;
+  -moz-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Safari/Chrome */
   appearance: none;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background: #357abd;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   transform: scale(1.2);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
 }
 
-.brush-size-container {
+/* For Firefox sliders: */
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #357abd;
+  cursor: pointer;
+  border: none;
+  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* --- Brush Size Container --- */
+.brush-size-container,
+.canvas-size-container,
+.brush-type-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
+  margin: 20px;
 }
 
-.brush-size-container label {
+.brush-size-container label,
+.canvas-size-container label,
+.brush-type-container label {
   font-size: 14px;
   font-weight: bold;
   color: #444;
   margin-bottom: 8px;
 }
 
+/* --- Canvas Size Container --- */
 .canvas-size-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.canvas-size-container label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #444;
-  margin-bottom: 8px;
-}
-
 .canvas-size-container .canvas-size-inputs {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  gap: 10px;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 10px; /* Gap might not be supported in older browsers, optionally replace with margin if needed */
 }
 
 .canvas-size-container input[type="number"] {
   width: 80px;
   padding: 10px;
   font-size: 14px;
+  text-align: center;
   border: 1px solid #d6d9de;
   border-radius: 8px;
-  text-align: center;
   outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .canvas-size-container input[type="number"]:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
   transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
-.brush-type-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
-
+/* --- Brush Type Container --- */
 .brush-type-container label {
   font-size: 16px;
-  font-weight: bold;
   color: #555;
   margin-bottom: 10px;
 }
@@ -152,23 +273,37 @@ input[type="range"]::-webkit-slider-thumb:hover {
   padding: 12px;
   font-size: 15px;
   color: #4a90e2;
-  background: linear-gradient(135deg, #f9fafc, #f4f5f7);
   border: 1px solid #d6d9de;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  /* Fallback background */
+  background: #f9fafc;
+  background: -webkit-linear-gradient(135deg, #f9fafc, #f4f5f7);
+  background: -moz-linear-gradient(135deg, #f9fafc, #f4f5f7);
+  background: linear-gradient(135deg, #f9fafc, #f4f5f7);
+  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 #brush-type:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 #brush-type:focus {
   outline: none;
   border-color: #4a90e2;
-  box-shadow: 0 0 10px rgba(74, 144, 226, 0.8);
+  -webkit-box-shadow: 0 0 10px rgba(74,144,226,0.8);
+  -moz-box-shadow: 0 0 10px rgba(74,144,226,0.8);
+  box-shadow: 0 0 10px rgba(74,144,226,0.8);
 }
 
 #brush-type option {
@@ -183,19 +318,30 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: #f4f5f7;
 }
 
+/* --- Brush Options --- */
 .brush-options {
   margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
 }
 
+/* --- Brush Icons --- */
 .brush-icons {
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
 .brush-icons li {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
   margin-bottom: 5px;
   font-size: 18px;
@@ -205,4 +351,3 @@ input[type="range"]::-webkit-slider-thumb:hover {
   margin-right: 10px;
   color: #555;
 }
-
