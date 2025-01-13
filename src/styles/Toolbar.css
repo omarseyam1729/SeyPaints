@@ -1,353 +1,315 @@
-/* --- Toolbar Container --- */
+/* 
+  ===========================
+    GLOBAL RESETS / UTILS
+  ===========================
+*/
+
+/* 
+  A simple reset for box-sizing so padding & border are included in width/height calculations 
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins/padding on body for a clean slate */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  background: #fafafa;
+}
+
+/* 
+  ===========================
+         TOOLBAR
+  ===========================
+*/
+
 .toolbar {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+  /* Use modern Flexbox with wrapping for responsiveness */
   display: flex;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
+  flex-wrap: wrap;
   justify-content: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  /* Instead of gap: 40px; we use margin on children */
+
   margin: 20px auto;
-  padding: 20px;
+  padding: 15px 20px;
   max-width: 90%;
   border: 1px solid #d6d9de;
-  border-radius: 20px;
-  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-  /* Fallback background color */
-  background: #f0f4f8;
-  /* Old gradients could be used if you need IE9 or older Safari/Android */
-  background: -webkit-linear-gradient(135deg, #f0f4f8, #dfe3e8);
-  background: -moz-linear-gradient(135deg, #f0f4f8, #dfe3e8);
-  background: linear-gradient(135deg, #f0f4f8, #dfe3e8);
+  border-radius: 16px;
+  
+  /* Eye-catching gradient background with fallback */
+  background: #8e9eab; /* fallback for old browsers */
+  background: linear-gradient(to right, #8e9eab, #eef2f3);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
+/* Simulating 'gap' with margins on children (for better older-browser support) */
 .toolbar > * {
-  margin: 0 20px;  /* replicate the 'gap: 40px;' effect (20px on each side) */
+  margin: 0 10px 10px 10px; /* give bottom margin for wrapping too */
 }
 
-/* --- Buttons --- */
+/* 
+  RESPONSIVE: For narrower screens, reduce padding, margin, and radius 
+*/
+@media (max-width: 600px) {
+  .toolbar {
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .toolbar > * {
+    margin: 5px;
+  }
+}
+
+/* 
+  ===========================
+          BUTTONS
+  ===========================
+*/
+
 button {
-  display: -webkit-inline-box;
-  display: -moz-inline-box;
-  display: -ms-inline-flexbox;
-  display: -webkit-inline-flex;
   display: inline-flex;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  padding: 12px 18px;
+
+  /* Slightly bigger padding and font for a pleasing CTA look */
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
   color: #fff;
-  font-size: 16px;
-  font-weight: bold;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  /* Fallback background color */
-  background: #4a90e2;
-  /* Gradient backgrounds with fallbacks */
-  background: -webkit-linear-gradient(135deg, #4a90e2, #357abd);
-  background: -moz-linear-gradient(135deg, #4a90e2, #357abd);
-  background: linear-gradient(135deg, #4a90e2, #357abd);
-  /* Transitions with vendor prefixes */
-  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease, background 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease, background 0.3s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+
+  /* Vibrant gradient to stand out on the toolbar */
+  background: #36d1dc; /* fallback */
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Hover/active states for additional interactivity */
 button:hover {
-  /* Slightly darker gradient */
-  background: -webkit-linear-gradient(135deg, #3b78b1, #2f5c89);
-  background: -moz-linear-gradient(135deg, #3b78b1, #2f5c89);
-  background: linear-gradient(135deg, #3b78b1, #2f5c89);
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  transform: scale(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
-  background: -webkit-linear-gradient(135deg, #2f5c89, #244d6d);
-  background: -moz-linear-gradient(135deg, #2f5c89, #244d6d);
-  background: linear-gradient(135deg, #2f5c89, #244d6d);
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  transform: scale(1);
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* --- Color Picker --- */
+/* 
+  ===========================
+        COLOR PICKER
+  ===========================
+*/
+
+/* 
+  Ensure the color input remains visible (inline-block) and retains its circular shape.
+*/
 input[type="color"] {
-  width: 50px;
-  height: 50px;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="color"]:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  transform: scale(1.2);
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transform: scale(1.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* --- Range Slider --- */
+/*
+  ===========================
+      RANGE SLIDER
+  ===========================
+*/
+
 input[type="range"] {
-  width: 200px;
-  height: 8px;
-  margin-top: 10px;
-  border-radius: 10px;
-  background: #4a90e2; /* fallback */
-  background: -webkit-linear-gradient(left, #4a90e2, #a4d1f9);
-  background: -moz-linear-gradient(left, #4a90e2, #a4d1f9);
-  background: linear-gradient(to right, #4a90e2, #a4d1f9);
+  width: 140px;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 6px;
   outline: none;
-  /* appearance resets for older browsers */
-  -webkit-appearance: none;
-  -moz-appearance: none;
+
+  /* Fallback + gradient */
+  background: #5b86e5; 
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+
+  -webkit-appearance: none; /* Remove default styling in WebKit */
   appearance: none;
-  -webkit-transition: box-shadow 0.3s ease;
-  -moz-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
 }
 
+/* Chrome / Safari / Edge Thumb */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Safari/Chrome */
+  -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #357abd;
+  background: #ffffff;
   cursor: pointer;
-  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  transform: scale(1.2);
-  -webkit-box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  transform: scale(1.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* For Firefox sliders: */
+/* Firefox Thumb */
 input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #357abd;
+  background: #ffffff;
   cursor: pointer;
   border: none;
-  -webkit-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 input[type="range"]::-moz-range-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  transform: scale(1.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Brush Size Container --- */
+/*
+  ===========================
+    SHARED CONTAINER STYLES
+  ===========================
+*/
+
 .brush-size-container,
 .canvas-size-container,
 .brush-type-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
   flex-direction: column;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  margin: 20px;
+  margin: 10px;
+  text-align: center;
 }
 
+/* Labels: slightly larger, bold, good contrast */
 .brush-size-container label,
 .canvas-size-container label,
 .brush-type-container label {
   font-size: 14px;
-  font-weight: bold;
-  color: #444;
-  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
 }
 
-/* --- Canvas Size Container --- */
-.canvas-size-container {
-  margin-left: 20px;
-  margin-right: 20px;
-}
+/* 
+  ===========================
+    CANVAS SIZE CONTAINER
+  ===========================
+*/
 
 .canvas-size-container .canvas-size-inputs {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  gap: 10px; /* Gap might not be supported in older browsers, optionally replace with margin if needed */
 }
 
-.canvas-size-container input[type="number"] {
-  width: 80px;
-  padding: 10px;
-  font-size: 14px;
+/* "gap" with margin for older browsers */
+.canvas-size-container .canvas-size-inputs input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  font-size: 13px;
   text-align: center;
   border: 1px solid #d6d9de;
-  border-radius: 8px;
+  border-radius: 6px;
   outline: none;
-  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease, -moz-box-shadow 0.3s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.canvas-size-container input[type="number"]:hover {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  transform: scale(1.1);
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+.canvas-size-container .canvas-size-inputs input[type="number"]:focus {
+  box-shadow: 0 0 6px rgba(54, 209, 220, 0.5);
 }
 
-/* --- Brush Type Container --- */
-.brush-type-container label {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 10px;
-}
+/*
+  ===========================
+       BRUSH TYPE SELECT
+  ===========================
+*/
 
 #brush-type {
-  width: 180px;
-  padding: 12px;
-  font-size: 15px;
-  color: #4a90e2;
+  width: 150px;
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
   border: 1px solid #d6d9de;
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
-  /* Fallback background */
-  background: #f9fafc;
-  background: -webkit-linear-gradient(135deg, #f9fafc, #f4f5f7);
-  background: -moz-linear-gradient(135deg, #f9fafc, #f4f5f7);
-  background: linear-gradient(135deg, #f9fafc, #f4f5f7);
-  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 #brush-type:hover {
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
   transform: scale(1.05);
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
 #brush-type:focus {
   outline: none;
-  border-color: #4a90e2;
-  -webkit-box-shadow: 0 0 10px rgba(74,144,226,0.8);
-  -moz-box-shadow: 0 0 10px rgba(74,144,226,0.8);
-  box-shadow: 0 0 10px rgba(74,144,226,0.8);
+  border-color: #36d1dc;
+  box-shadow: 0 0 6px rgba(54, 209, 220, 0.5);
 }
 
 #brush-type option {
   font-size: 14px;
   color: #333;
   background: #fff;
-  padding: 8px;
+  padding: 4px 8px;
   cursor: pointer;
 }
 
-#brush-type option:hover {
-  background: #f4f5f7;
-}
+/*
+  ===========================
+       BRUSH OPTIONS
+  ===========================
+*/
 
-/* --- Brush Options --- */
 .brush-options {
   margin-bottom: 10px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
+  color: #444;
 }
 
-/* --- Brush Icons --- */
 .brush-icons {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Slightly larger icons for visual clarity */
 .brush-icons li {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
   margin-bottom: 5px;
   font-size: 18px;
 }
 
 .brush-icons li i {
-  margin-right: 10px;
+  margin-right: 8px;
   color: #555;
 }
